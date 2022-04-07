@@ -20,7 +20,6 @@ To learn more see: [How to build a Conduit Connector](https://www.conduit.io/gui
 
 ### Configuration
 
-There's no global, connector configuration. Each connector instance is configured separately.
 
 | name                 | part of             | description                                                                                                                                                                        | required | default value |
 |----------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------------|
