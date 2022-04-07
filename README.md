@@ -9,7 +9,7 @@ This connector allows you to move data from any [Conduit Source](https://www.con
 Run:
 
 ```bash
-go build -o algolia cmd/algolia/main.go`
+make build
 ```
 
 ### How it works
