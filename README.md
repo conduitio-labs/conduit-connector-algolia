@@ -14,7 +14,7 @@ go build -o algolia cmd/algolia/main.go`
 
 ### How it works
 
-Under the hood, the connector uses [Algolia's Go Library](https://www.algolia.com/doc/api-client/getting-started/install/go/?client=go) to send data to Algoliga.
+Under the hood, the connector uses [Algolia's Go Library](https://www.algolia.com/doc/api-client/getting-started/install/go/?client=go) to send data to Algolia.
 
 To learn more see: [How to build a Conduit Connector](https://www.conduit.io/guides/build-a-conduit-connecto)
 
