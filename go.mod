@@ -1,11 +1,14 @@
-module github.com/conduitio/conduit-connector-algolia
+module github.com/conduitio-labs/conduit-connector-algolia
 
 go 1.17
 
 require (
-	github.com/algolia/algoliasearch-client-go/v3 v3.4.0 // indirect
+	github.com/algolia/algoliasearch-client-go/v3 v3.4.0
+	github.com/conduitio/conduit-connector-sdk v0.0.0-20220304172424-32a20f262a14
+)
+
+require (
 	github.com/conduitio/conduit-connector-protocol v0.0.0-20220302182649-4f4c215c2b83 // indirect
-	github.com/conduitio/conduit-connector-sdk v0.0.0-20220304172424-32a20f262a14 // indirect
 	github.com/fatih/color v1.7.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/hashicorp/go-hclog v0.14.1 // indirect
