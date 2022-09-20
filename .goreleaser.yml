@@ -1,6 +1,5 @@
 builds:
   - main: ./cmd/connector/main.go
-    binary: conduit-connector-algolia
     goos:
       - darwin
       - linux
