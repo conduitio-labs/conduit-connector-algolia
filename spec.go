@@ -16,20 +16,5 @@ func Specification() sdk.Specification {
 		Description: "TBD",
 		Version:     version,
 		Author:      "Meroxa, Inc.",
-		DestinationParams: map[string]sdk.Parameter{
-			DestinationConfigAPIKey: {
-				Required:    true,
-				Description: "The API key for Algolia.",
-			},
-			DestinationConfigApplicationID: {
-				Required:    true,
-				Description: "The Application ID for Algolia.",
-			},
-			DestinationConfigIndexName: {
-				Required:    true,
-				Description: "The Algolia index where records get written into.",
-			},
-		},
-		SourceParams: nil,
 	}
 }

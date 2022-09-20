@@ -6,9 +6,5 @@ import (
 )
 
 func main() {
-	sdk.Serve(
-		algolia.Specification,
-		nil,
-		algolia.NewDestination,
-	)
+	sdk.Serve(algolia.Connector)
 }

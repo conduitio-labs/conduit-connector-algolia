@@ -25,10 +25,15 @@ type Object sdk.Record
 
 func (o Object) MarshalJSON() ([]byte, error) {
 	out := map[string]interface{}{
-		"position":  string(o.Position),
-		"key":       parseData(o.Key),
-		"payload":   parseData(o.Payload),
-		"createdAt": o.CreatedAt.Format(time.RFC3339),
+		"position": string(o.Position),
+		"key":      parseData(o.Key),
+		"payload":  parseData(o.Payload.After),
+	}
+	if createdAt, err := o.Metadata.GetCreatedAt(); err != nil {
+		out["createdAt"] = createdAt.Format(time.RFC3339)
+	}
+	if readAt, err := o.Metadata.GetReadAt(); err != nil {
+		out["readAt"] = readAt.Format(time.RFC3339)
 	}
 	return json.Marshal(out)
 }

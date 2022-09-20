@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/algolia/algoliasearch-client-go/v3/algolia/opt"
 	"github.com/algolia/algoliasearch-client-go/v3/algolia/search"
 	sdk "github.com/conduitio/conduit-connector-sdk"
 )
@@ -28,7 +29,24 @@ type DestinationConfig struct {
 }
 
 func NewDestination() sdk.Destination {
-	return &Destination{}
+	return sdk.DestinationWithMiddleware(&Destination{}, sdk.DefaultDestinationMiddleware()...)
+}
+
+func (d *Destination) Parameters() map[string]sdk.Parameter {
+	return map[string]sdk.Parameter{
+		DestinationConfigAPIKey: {
+			Required:    true,
+			Description: "The API key for Algolia.",
+		},
+		DestinationConfigApplicationID: {
+			Required:    true,
+			Description: "The Application ID for Algolia.",
+		},
+		DestinationConfigIndexName: {
+			Required:    true,
+			Description: "The Algolia index where records get written into.",
+		},
+	}
 }
 
 func (d *Destination) Configure(ctx context.Context, cfg map[string]string) error {
@@ -59,18 +77,22 @@ func (d *Destination) Open(ctx context.Context) error {
 	return nil
 }
 
-func (d *Destination) Write(ctx context.Context, record sdk.Record) error {
-	res, err := d.index.SaveObject(Object(record))
+func (d *Destination) Write(ctx context.Context, records []sdk.Record) (int, error) {
+	objects := make([]Object, len(records))
+	for i, r := range records {
+		objects[i] = Object(r)
+	}
+
+	res, err := d.index.SaveObjects(objects, opt.AutoGenerateObjectIDIfNotExist(true))
 	if err != nil {
-		return fmt.Errorf("could not save object: %w", err)
+		return 0, fmt.Errorf("could not save objects: %w", err)
 	}
 
 	sdk.Logger(ctx).Debug().
-		Int("taskId", res.TaskID).
-		Str("objectId", res.ObjectID).
-		Msg("saved object")
+		Strs("objectIds", res.ObjectIDs()).
+		Msg("saved objects")
 
-	return nil
+	return len(records), nil
 }
 
 func (d *Destination) Teardown(ctx context.Context) error {
