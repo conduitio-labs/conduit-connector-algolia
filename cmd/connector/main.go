@@ -10,5 +10,5 @@ func main() {
 		algolia.Specification,
 		nil,
 		algolia.NewDestination,
-		)
+	)
 }
