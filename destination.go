@@ -1,3 +1,17 @@
+// Copyright © 2024 Meroxa, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 package algolia
 
 import (
@@ -32,7 +46,7 @@ func NewDestination() sdk.Destination {
 	return sdk.DestinationWithMiddleware(&Destination{}, sdk.DefaultDestinationMiddleware()...)
 }
 
-func (d *Destination) Configure(ctx context.Context, cfg config.Config) error {
+func (d *Destination) Configure(_ context.Context, cfg config.Config) error {
 	destCfg := DestinationConfig{
 		APIKey:        cfg[DestinationConfigApiKey],
 		ApplicationID: cfg[DestinationConfigApplicationID],
@@ -53,7 +67,7 @@ func (d *Destination) Configure(ctx context.Context, cfg config.Config) error {
 	return nil
 }
 
-func (d *Destination) Open(ctx context.Context) error {
+func (d *Destination) Open(_ context.Context) error {
 	client := search.NewClient(d.config.ApplicationID, d.config.APIKey)
 	index := client.InitIndex(d.config.IndexName)
 	d.index = index
@@ -78,7 +92,7 @@ func (d *Destination) Write(ctx context.Context, records []opencdc.Record) (int,
 	return len(records), nil
 }
 
-func (d *Destination) Teardown(ctx context.Context) error {
+func (d *Destination) Teardown(_ context.Context) error {
 	// do nothing
 	return nil
 }
