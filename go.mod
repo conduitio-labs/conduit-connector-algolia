@@ -5,7 +5,7 @@ go 1.23.2
 toolchain go1.23.3
 
 require (
-	github.com/algolia/algoliasearch-client-go/v3 v3.26.1
+	github.com/algolia/algoliasearch-client-go/v3 v3.31.4
 	github.com/conduitio/conduit-commons v0.5.0
 	github.com/conduitio/conduit-connector-sdk v0.12.0
 	github.com/golangci/golangci-lint v1.61.0
