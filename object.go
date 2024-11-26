@@ -18,10 +18,10 @@ import (
 	"encoding/json"
 	"time"
 
-	sdk "github.com/conduitio/conduit-connector-sdk"
+	"github.com/conduitio/conduit-commons/opencdc"
 )
 
-type Object sdk.Record
+type Object opencdc.Record
 
 func (o Object) MarshalJSON() ([]byte, error) {
 	out := map[string]interface{}{
@@ -38,7 +38,7 @@ func (o Object) MarshalJSON() ([]byte, error) {
 	return json.Marshal(out)
 }
 
-func parseData(d sdk.Data) interface{} {
+func parseData(d opencdc.Data) interface{} {
 	var out map[string]interface{}
 	err := json.Unmarshal(d.Bytes(), &out)
 	if err != nil {

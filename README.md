@@ -26,3 +26,5 @@ To learn more see: [How to build a Conduit Connector](https://www.conduit.io/gui
 | `APIKey`            | destination | The [API key](https://www.algolia.com/doc/guides/security/api-keys/) for Algolia.                                                                                                                      | true     |               |
 | `ApplicationID`              | destination | The [Application ID](https://www.algolia.com/doc/guides/security/api-keys/) for Algolia.                                                                                                                           | true     |               |
 | `IndexName`         | destination | The Algolia index where records get written into.                                                                          |  true   |               |
+
+![scarf pixel](https://static.scarf.sh/a.png?x-pxid=5817f99a-35dc-4a96-aed8-8de10d2d70a7)
