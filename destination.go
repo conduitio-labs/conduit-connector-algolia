@@ -46,6 +46,10 @@ func NewDestination() sdk.Destination {
 	return sdk.DestinationWithMiddleware(&Destination{}, sdk.DefaultDestinationMiddleware()...)
 }
 
+func (d *Destination) Parameters() config.Parameters {
+	return d.config.Parameters()
+}
+
 func (d *Destination) Configure(_ context.Context, cfg config.Config) error {
 	destCfg := DestinationConfig{
 		APIKey:        cfg[DestinationConfigApiKey],
