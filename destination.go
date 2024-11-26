@@ -50,24 +50,13 @@ func (d *Destination) Parameters() config.Parameters {
 	return d.config.Parameters()
 }
 
-func (d *Destination) Configure(_ context.Context, cfg config.Config) error {
-	destCfg := DestinationConfig{
-		APIKey:        cfg[DestinationConfigApiKey],
-		ApplicationID: cfg[DestinationConfigApplicationID],
-		IndexName:     cfg[DestinationConfigIndexName],
+func (d *Destination) Configure(ctx context.Context, cfg config.Config) error {
+	sdk.Logger(ctx).Info().Msg("Configuring Algolia Destination...")
+	err := sdk.Util.ParseConfig(ctx, cfg, &d.config, NewDestination().Parameters())
+	if err != nil {
+		return err
 	}
 
-	if destCfg.APIKey == "" {
-		return fmt.Errorf("%q is a required parameter", DestinationConfigApiKey)
-	}
-	if destCfg.ApplicationID == "" {
-		return fmt.Errorf("%q is a required parameter", DestinationConfigApplicationID)
-	}
-	if destCfg.IndexName == "" {
-		return fmt.Errorf("%q is a required parameter", DestinationConfigIndexName)
-	}
-
-	d.config = destCfg
 	return nil
 }
 
