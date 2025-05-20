@@ -4,7 +4,7 @@ go 1.24.2
 
 require (
 	github.com/algolia/algoliasearch-client-go/v3 v3.31.4
-	github.com/conduitio/conduit-commons v0.5.3
+	github.com/conduitio/conduit-commons v0.5.4
 	github.com/conduitio/conduit-connector-sdk v0.12.0
 	github.com/golangci/golangci-lint v1.64.8
 )
